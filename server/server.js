@@ -1,4 +1,8 @@
-// Main entry point for the backend server: sets up Express, connects to MongoDB, and mounts all routes
+// Main entry point for the backend server: loads environment variables, sets up Express, connects to MongoDB, and mounts all routes
+
+// Load .env variables
+require("dotenv").config();
+
 const express = require("express");
 const cors = require("cors");
 const app = express();
