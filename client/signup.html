@@ -10,6 +10,40 @@
     </head>
 
     <body>
-        <h1>Create Account</h1>
+        <!-- Signup container: holds the signup form centered on the page -->
+        <div class="signup-container">
+            <h1>Create Account</h1>
+
+            <!-- Username input -->
+            <label for="signupUsername">Username</label>
+            <input
+                type="text"
+                id="signupUsername"
+                placeholder="Choose a username"
+            >
+
+            <!-- Password input -->
+            <label for="signupPassword">Password</label>
+            <input
+                type="password"
+                id="signupPassword"
+                placeholder="Choose a password"
+            >
+
+            <!-- Signup button -->
+            <button id="signupButton">Sign Up</button>
+
+            <!-- Link back to login -->
+            <p>
+                Already have an account?
+                <a href="index.html">Login here</a>
+            </p>
+
+            <!-- Error message area -->
+            <p id="signupError" class="error-message"></p>
+            <p id="signupSuccess" class="success-message"></p>
+        </div>
+
+        <script src="app.js"></script>
     </body>
 </html>

@@ -10,6 +10,39 @@
     </head>
 
     <body>
-        <h1>Login</h1>
+        <!-- Login container: holds the login form centered on the page -->
+         <div class="login-container">
+            <h1>Login</h1>
+
+            <!-- Username input -->
+            <label for="username">Username</label>
+            <input
+                type="text"
+                id="username"
+                placeholder="Enter username"
+            >
+
+            <!-- Password input -->
+            <label for="password">Password</label>
+            <input
+                type="password"
+                id="password"
+                placeholder="Enter password"
+            >
+
+            <!-- Login button -->
+            <button id="loginBtn">Login</button>
+
+            <!-- Link to signup page -->
+            <p>
+                Don't have an account?
+                <a href="signup.html">Sign up here</a>
+            </p>
+
+            <!-- Error message area -->
+            <p id="loginError" class="error-message"></p>
+         </div>
+
+         <script src="app.js"></script>
     </body>
 </html>
