@@ -8,7 +8,7 @@ const TransactionSchema = new mongoose.Schema({
     // amount: amount of the transaction
     // category: category of the transaction
     // date: date of the transaction
-    // description: description of the transaction
+    // description: description of the transaction (optional)
     userId: mongoose.Schema.Types.ObjectId,
     amount: Number,
     category: String,
