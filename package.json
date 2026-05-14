@@ -1,0 +1,20 @@
+{
+  "name": "personal-finance-tracker",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dianellasy/Personal-Finance-Tracker.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dianellasy/Personal-Finance-Tracker/issues"
+  },
+  "homepage": "https://github.com/dianellasy/Personal-Finance-Tracker#readme"
+}
