@@ -47,3 +47,44 @@
     color: green;
     margin-top: 10px;
 }
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 8px;
+    margin-top: 20px;
+}
+
+.calendar-day {
+    border: 1px solid #ccc;
+    padding: 10px;
+    min-height: 80px;
+    border-radius: 6px;
+    background: #fafafa;
+    cursor: pointer;
+}
+
+.calendar-day:hover {
+    background: #e8e8e8;
+}
+
+.calendar-day.has-transactions {
+    background: #d1f0d1;
+    border-color: #7ac27a;
+}
+
+#calendarHeader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 10px;
+}
+
+#calendarDayDetails {
+    margin-top: 20px;
+    padding: 10px;
+    background: white;
+    border-radius: 6px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}

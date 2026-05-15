@@ -90,6 +90,27 @@
                 <ul id="transactionList" class="transaction-list">
                 </ul>
             </section>
+
+            <section id="calendarSection" style="display:none;">
+                <h2>Monthly Calendar</h2>
+
+                <!-- Month header -->
+                <div id="calendarHeader">
+                    <button id="previousMonthButton">◀</button>
+                    <span id="calendarMonthLabel"></span>
+                    <button id="nextMonthButton">▶</button>
+                </div>
+
+                <!-- Calendar grid -->
+                <div id="calendarGrid" class="calendar-grid"></div>
+
+                <!-- Day details -->
+                <div id="calendarDayDetails"></div>
+            </section>
+
+            <!-- Button to switch views -->
+            <button id="calendarViewButton">Calendar View</button>
+            <button id="listViewButton" style="display:none;">List View</button>
         </main>
         <script src="app.js"></script>
     </body>
