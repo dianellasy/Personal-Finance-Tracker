@@ -8,16 +8,22 @@ if (loginButton) {
 function handleLogin() {
     var usernameInput = document.getElementById("username");
     var passwordInput = document.getElementById("password");
+
     var loginErrorBox = document.getElementById("loginError");
+    var loginSuccessBox = document.getElementById("loginSuccess");
 
     var username = usernameInput.value.trim();
     var password = passwordInput.value.trim();
 
-    // Clear previous error
-    if (loginErrorBox) loginErrorBox.textContent = "";
+    // Clear previous messages + remove styling
+    loginErrorBox.textContent = "";
+    loginErrorBox.className = "";
+    loginSuccessBox.textContent = "";
+    loginSuccessBox.className = "";
 
     if (username === "" || password === "") {
         loginErrorBox.textContent = "Please enter both username and password";
+        loginErrorBox.className = "error-message fade-in";
         return;
     }
 
@@ -31,16 +37,26 @@ function handleLogin() {
     .then(response => response.json().then(data => ({ ok: response.ok, data })))
     .then(result => {
         if (!result.ok) {
-            loginErrorBox.textContent = result.data.message || "Login failed";
+            loginErrorBox.textContent = result.data.message || "Invalid credentials";
+            loginErrorBox.className = "error-message fade-in";
             return;
         }
 
+        // Success
+        loginSuccessBox.textContent = "Login successful! Redirecting...";
+        loginSuccessBox.className = "success-message fade-in";
+
+        // Save token + redirect
         localStorage.setItem("token", result.data.token);
-        window.location.href = "dashboard.html";
+
+        setTimeout(() => {
+            window.location.href = "dashboard.html";
+        }, 1200);
     })
     .catch(err => {
         console.error("Login error:", err);
         loginErrorBox.textContent = "Server error. Please try again";
+        loginErrorBox.className = "error-message fade-in";
     });
 }
 
