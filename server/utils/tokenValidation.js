@@ -14,13 +14,15 @@ module.exports = function (req, res, next) {
 
     // Set token equal to token in "Bearer <token>"
     const token = jwtTokenInAuthorizationHeader.split(" ")[1];
-    next();
 
     try {
         const decoded = jwt.verify(token, JWT_SECRET_KEY);
 
         // Attach user info to request for later use
         req.user = decoded;
+
+        // Continue only after verifying token
+        next();
 
     } catch (error) {
         return res.status(401).json({ message: "Invalid or expired token" });
