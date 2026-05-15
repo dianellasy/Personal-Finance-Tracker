@@ -1,132 +1,93 @@
-<!-- Main dashboard shown only after login -->
-
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>Dashboard</title>
-        <link rel="stylesheet" href="styles.css">
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
 
-    <body>
-        <!-- Top banner -->
-        <header class="top-banner">
-            <h1>Personal Finance Tracker</h1>
-        </header>
+<body>
+    <!-- Top banner -->
+    <header class="top-banner">
+        <h1>Personal Finance Tracker</h1>
+    </header>
 
-        <div class="content">
-            <div class="dashboard-container">
-                <!-- Dashboard header -->
-                <header class="dashboard-header">
-                    <h1>Your Transactions</h1>
-                    <button id="logoutButton">Logout</button>
-                </header>
+    <div class="content">
+        <div class="dashboard-container">
 
-                <!-- Main dashboard -->
-                <main class="dashboard-main">
-                    <!-- Left panel: add new transaction -->
-                    <section class="add-transaction-panel">
-                        <h2 class="section-title">Add Transaction</h2>
+            <!-- Dashboard header -->
+            <header class="dashboard-header">
+                <h1>Your Transactions</h1>
+                <button id="logoutButton">Logout</button>
+            </header>
 
-                        <!-- Amount -->
-                        <label for="amount">Amount</label>
-                        <input
-                            type="number"
-                            id="amount"
-                            placeholder="Enter amount"
-                        >
+            <!-- Main dashboard -->
+            <main class="dashboard-main">
 
-                        <!-- Category -->
-                        <label for="category">Catgeory</label>
-                        <select id="category">
-                            <option value="">Select category</option>
-                            <option value="Food">Food</option>
-                            <option value="Bills">Bills</option>
-                            <option value="Shopping">Shopping</option>
-                            <option value="Entertainment">Entertainment</option>
-                            <option value="Other">Other</option>
-                        </select>
+                <!-- Left panel: Add Transaction -->
+                <section class="add-transaction-panel">
+                    <h2 class="section-title">Add Transaction</h2>
 
-                        <!-- Date -->
-                        <label for="date">Date</label>
-                        <input
-                            type="date"
-                            id="date"
-                        >
+                    <label for="amount">Amount</label>
+                    <input type="number" id="amount" placeholder="Enter amount">
 
-                        <!-- Description -->
-                        <label for="description">Description (optional)</label>
-                        <input
-                            type="text"
-                            id="description"
-                            placeholder="Notes"
-                        >
+                    <label for="category">Category</label>
+                    <select id="category">
+                        <option value="">Select category</option>
+                        <option value="Food">Food</option>
+                        <option value="Bills">Bills</option>
+                        <option value="Shopping">Shopping</option>
+                        <option value="Entertainment">Entertainment</option>
+                        <option value="Other">Other</option>
+                    </select>
 
-                        <!-- Add button -->
-                        <button id="addTransactionButton">Add Transaction</button>
+                    <label for="date">Date</label>
+                    <input type="date" id="date">
 
-                        <!-- Error and success message area -->
-                        <p id="addError"></p>
-                        <p id="addSuccess"></p>
-                    </section>
+                    <label for="description">Description (optional)</label>
+                    <input type="text" id="description" placeholder="Notes">
 
-                    <!-- Right panel: transaction list + sorting + filtering -->
-                    <section class="transactions-panel">
-                        <h2 class="section-title">Your History</h2>
+                    <button id="addTransactionButton">Add Transaction</button>
 
-                        <!-- Sorting -->
-                        <label for="sortSelect">Sort By</label>
-                        <select id="sortSelect">
-                            <option value="date-newest-first">Newest First</option>
-                            <option value="date-oldest-first">Oldest First</option>
-                            <option value="highest-amount">Highest Amount</option>
-                            <option value="lowest-amount">Lowest Amount</option>
-                        </select>
+                    <!-- Error + Success -->
+                    <p id="addError"></p>
+                    <p id="addSuccess"></p>
+                </section>
 
-                        <!-- Filtering -->
-                        <label for="filterSelect">Filter By Category</label>
-                        <select id="filterSelect">
-                            <option value="all">All</option>
-                            <option value="Food">Food</option>
-                            <option value="Bills">Bills</option>
-                            <option value="Shopping">Shopping</option>
-                            <option value="Entertainment">Entertainment</option>
-                            <option value="Other">Other</option>
-                        </select>
+                <!-- Right panel: History -->
+                <section class="transactions-panel">
+                    <h2 class="section-title">Your History</h2>
 
-                        <!-- Transaction list container -->
-                        <ul id="transactionList" class="transaction-list">
-                        </ul>
-                    </section>
+                    <label for="sortSelect">Sort By</label>
+                    <select id="sortSelect">
+                        <option value="date-newest-first">Newest First</option>
+                        <option value="date-oldest-first">Oldest First</option>
+                        <option value="highest-amount">Highest Amount</option>
+                        <option value="lowest-amount">Lowest Amount</option>
+                    </select>
 
-                    <section id="calendarSection" style="display:none;">
-                        <h2>Monthly Calendar</h2>
+                    <label for="filterSelect">Filter By Category</label>
+                    <select id="filterSelect">
+                        <option value="all">All</option>
+                        <option value="Food">Food</option>
+                        <option value="Bills">Bills</option>
+                        <option value="Shopping">Shopping</option>
+                        <option value="Entertainment">Entertainment</option>
+                        <option value="Other">Other</option>
+                    </select>
 
-                        <!-- Month header -->
-                        <div id="calendarHeader">
-                            <button id="previousMonthButton">◀</button>
-                            <span id="calendarMonthLabel"></span>
-                            <button id="nextMonthButton">▶</button>
-                        </div>
+                    <ul id="transactionList" class="transaction-list"></ul>
+                </section>
 
-                        <!-- Calendar grid -->
-                        <div id="calendarGrid" class="calendar-grid"></div>
-
-                        <!-- Day details -->
-                        <div id="calendarDayDetails"></div>
-                    </section>
-
-                    <!-- Button to switch views -->
-                    <button id="calendarViewButton">Calendar View</button>
-                    <button id="listViewButton" style="display:none;">List View</button>
-                </main>
-            </div>
+            </main>
         </div>
+    </div>
 
-        <!-- Footer -->
-         <footer class="footer">
-            © 2026 Dianella Sy — All Rights Reserved
-         </footer>
-        <script src="app.js"></script>
-    </body>
+    <!-- Footer -->
+    <footer class="footer">
+        © 2026 Dianella Sy — All Rights Reserved
+    </footer>
+
+    <script src="app.js"></script>
+</body>
 </html>

@@ -201,6 +201,7 @@ a:hover {
     to { opacity: 1; transform: translateY(0); }
 }
 
+/* Dashboard container */
 .dashboard-container {
     width: 900px;
     background: white;
@@ -210,21 +211,42 @@ a:hover {
     margin-bottom: 60px;
 }
 
-.dashboard-container h2 {
-    margin-top: 0;
-    font-size: 1.4rem;
+/* Dashboard header */
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.dashboard-header h1 {
+    margin: 0;
+    font-size: 1.6rem;
     color: #111;
 }
 
-.section-title {
-    margin-top: 30px;
-    margin-bottom: 10px;
-    font-weight: 600;
+/* Two-column layout */
+.dashboard-main {
+    display: flex;
+    gap: 40px;
 }
 
+.add-transaction-panel,
+.transactions-panel {
+    flex: 1;
+}
+
+/* Section titles */
+.section-title {
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-weight: 600;
+    font-size: 1.2rem;
+}
+
+/* Inputs */
 .dashboard-container input,
-.dashboard-container select,
-.dashboard-container textarea {
+.dashboard-container select {
     width: 100%;
     padding: 12px;
     margin: 6px 0 14px 0;
@@ -233,6 +255,7 @@ a:hover {
     box-sizing: border-box;
 }
 
+/* Add Transaction button */
 #addTransactionButton {
     width: 100%;
     padding: 12px;
@@ -248,29 +271,7 @@ a:hover {
     background: #555;
 }
 
-.dashboard-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 25px;
-}
-
-.dashboard-header h1 {
-    margin: 0;
-    font-size: 1.6rem;
-    color: #111;
-}
-
-.dashboard-main {
-    display: flex;
-    gap: 40px;
-}
-
-.add-transaction-panel,
-.transactions-panel {
-    flex: 1;
-}
-
+/* Transaction list items */
 .transaction-list li {
     background: #fafafa;
     padding: 12px 14px;
@@ -286,6 +287,7 @@ a:hover {
     font-weight: 500;
 }
 
+/* Delete button */
 .transaction-list li button {
     background: #d9534f;
     color: white;
