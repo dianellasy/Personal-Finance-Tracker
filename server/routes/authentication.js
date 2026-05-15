@@ -6,7 +6,7 @@ const router = express.Router();
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
-const User = require("../models/User")
+const User = require("../models/User");
 
 // Load secret key from .env
 const JWT_SECRET_KEY = process.env.JWT_SECRET_KEY;

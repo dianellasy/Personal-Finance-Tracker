@@ -6,7 +6,8 @@ require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const app = express();
-const connectMongoDB = require("./config/db");
+app.use(express.static("public"));
+const connectMongoDB = require("./server/config/database");
 
 // Enable CORS, so the client or frontend can communicate with the server
 app.use(cors());
@@ -18,12 +19,12 @@ app.use(express.json());
 connectMongoDB();
 
 // Mount authentication routes (signup + login)
-app.use("/auth", require("./routes/auth"));
+app.use("/authentication", require("./server/routes/authentication"));
 
 // Mount transaction CRUD routes 
-app.use("/transactions", require("./routes/transactions"));
+app.use("/transactions", require("./server/routes/transactions"));
 
 // Start the server on port 3000
 app.listen(3000, () => {
-    console.log("Server running on port 3000");
+    console.log("Server running on http://localhost:3000");
 });

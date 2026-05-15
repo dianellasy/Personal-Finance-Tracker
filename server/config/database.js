@@ -7,7 +7,7 @@ module.exports = async function connectMongoDB() {
         const database_name = "cpsc431_sydianella"
 
         // Connect to local MongoDB instance
-        await mongoose.connect('mongodb://127.0.0.1:27017/${database_name}');
+        await mongoose.connect(`mongodb://127.0.0.1:27017/${database_name}`);
 
         console.log("MongoDB connected");
     } catch (error) {

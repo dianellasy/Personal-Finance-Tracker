@@ -27,7 +27,7 @@ function handleLogin() {
 
     // If the user didn't input username or password
     if (username === "" || password === "") {
-        loginErrorBox.textContent = "Please enter both username and password.";
+        loginErrorBox.textContent = "Please enter both username and password";
         return;
     }
 
@@ -38,9 +38,9 @@ function handleLogin() {
     };
 
     // Send login request
-    fetch("http://localhost:3000/auth/login", {
+    fetch("http://localhost:3000/authentication/login", {
         method: "POST",
-        headers: { "Content-Type": "applications/json" },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(requestBody)
     })
     .then(function(response) {
@@ -91,7 +91,7 @@ function handleSignup() {
 
     // If the user didn't input username or password
     if (username === "" || password === "") {
-        loginErrorBox.textContent = "Please enter both username and password.";
+        signupErrorBox.textContent = "Please enter both username and password";
         return;
     }
 
@@ -102,9 +102,9 @@ function handleSignup() {
     };
 
     // Send signup request
-    fetch("http://localhost:3000/auth/signup", {
+    fetch("http://localhost:3000/authentication/signup", {
         method: "POST",
-        headers: { "Content-Type": "applications/json" },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(requestBody)
     })
     .then(function(response) {
@@ -137,7 +137,7 @@ function handleSignup() {
 
 // Global state: holds all transactions loaded from the backend
 // Sorting + filtering operate on this array
-var allTransactions = [];
+var transactionDataList = [];
 
 // Page load handler
 window.onload = function () {
@@ -231,7 +231,7 @@ function handleAddTransaction() {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
-            "Authorization": "Bearer" + storedToken
+            "Authorization": "Bearer " + storedToken
         },
         body: JSON.stringify({
             amount: amountInput,

@@ -3,7 +3,6 @@
 const express = require("express");
 const router = express.Router();
 const authentication = require("../utils/tokenValidation");
-
 const Transaction = require("../models/Transaction");
 
 // Apply token validation to all routes
@@ -73,7 +72,7 @@ router.put("/:id", async (req, res) => {
         }
 
         // Return updated transaction
-        res.status(200).json(updated);
+        res.status(200).json(updatedTransaction);
 
     } catch (error) {
         console.error("Update transaction error:", error);
