@@ -83,14 +83,37 @@
 
                     <ul id="transactionList" class="transaction-list"></ul>
                 </section>
-
             </main>
+
+            <section id="calendarSection">
+                <h2 class="section-title">Calendar View</h2>
+
+                <div id="calendarHeader">
+                    <button id="previousMonthButton">◀</button>
+                    <span id="calendarMonthLabel"></span>
+                    <button id="nextMonthButton">▶</button>
+                </div>
+
+                <div class="calendar-weekdays">
+                    <div>Sun</div>
+                    <div>Mon</div>
+                    <div>Tue</div>
+                    <div>Wed</div>
+                    <div>Thu</div>
+                    <div>Fri</div>
+                    <div>Sat</div>
+                </div>
+
+                <div id="calendarGrid" class="calendar-grid"></div>
+
+                <div id="calendarDayDetails"></div>
+            </section>
         </div>
     </div>
 
     <!-- Footer -->
     <footer class="footer">
-        © 2026 Dianella Sy — All Rights Reserved
+        © 2026 Dianella Sy — Designed & Built with Care
     </footer>
 
     <script src="app.js"></script>

@@ -156,6 +156,7 @@ function loadTransactions() {
     .then(list => {
         transactionDataList = list;
         applySortAndFilter();
+        renderCalendar();
     })
     .catch(err => console.error("Error loading transactions:", err));
 }
@@ -338,6 +339,122 @@ var filterDropdown = document.getElementById("filterSelect");
 if (filterDropdown) {
     filterDropdown.addEventListener("change", applySortAndFilter);
 }
+
+let currentMonth = new Date().getMonth();
+let currentYear = new Date().getFullYear();
+
+
+function renderCalendar() {
+    const monthLabel = document.getElementById("calendarMonthLabel");
+    const grid = document.getElementById("calendarGrid");
+
+    const firstDay = new Date(currentYear, currentMonth, 1);
+    const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+
+    monthLabel.textContent = firstDay.toLocaleString("default", {
+        month: "long",
+        year: "numeric"
+    });
+
+    grid.innerHTML = "";
+
+    // Fill empty cells before the 1st
+    for (let i = 0; i < firstDay.getDay(); i++) {
+        const empty = document.createElement("div");
+        empty.classList.add("calendar-day");
+        grid.appendChild(empty);
+    }
+
+    // Fill actual days
+    for (let day = 1; day <= daysInMonth; day++) {
+        const cell = document.createElement("div");
+        cell.classList.add("calendar-day");
+
+        const dateString = `${currentYear}-${String(currentMonth + 1).padStart(2,"0")}-${String(day).padStart(2,"0")}`;
+
+        // Highlight today's date
+        const today = new Date().toISOString().split("T")[0];
+        if (dateString === today) {
+            cell.classList.add("today");
+        }
+
+        const todaysTransactions = transactionDataList.filter(t => t.date.startsWith(dateString));
+
+        if (todaysTransactions.length > 0) {
+            cell.classList.add("has-transactions");
+        }
+
+        cell.textContent = day;
+
+        cell.addEventListener("click", () => showDayDetails(dateString, todaysTransactions));
+
+        grid.appendChild(cell);
+    }
+}
+
+const categoryIcons = {
+    Food: "🍔",
+    Bills: "💡",
+    Shopping: "🛍️",
+    Entertainment: "🎬",
+    Other: "📦"
+};
+
+function showDayDetails(dateString, list) {
+    const box = document.getElementById("calendarDayDetails");
+
+    if (list.length === 0) {
+        box.innerHTML = `<p>No transactions on this day.</p>`;
+        return;
+    }
+
+    // Calculate total for the day
+    const dayTotal = list.reduce((sum, t) => sum + Number(t.amount), 0);
+
+    let html = `
+        <h3>Transactions on ${formatDateMMDDYYYY(dateString)}</h3>
+    `;
+
+    list.forEach(t => {
+        const icon = categoryIcons[t.category] || "";
+        html += `
+            <p class="day-transaction">
+                <span class="day-icon">${icon}</span>
+                <strong>${t.category}</strong> — $${t.amount}
+                <br>
+                <em>${t.description || ""}</em>
+            </p>
+        `;
+    });
+
+    // Total at the bottom
+    html += `
+        <hr>
+        <p class="day-total">Total for the day: $${dayTotal.toLocaleString()}</p>
+    `;
+
+    box.innerHTML = html;
+}
+
+
+document.getElementById("previousMonthButton").addEventListener("click", () => {
+    currentMonth--;
+    if (currentMonth < 0) {
+        currentMonth = 11;
+        currentYear--;
+    }
+    renderCalendar();
+});
+
+document.getElementById("nextMonthButton").addEventListener("click", () => {
+    currentMonth++;
+    if (currentMonth > 11) {
+        currentMonth = 0;
+        currentYear++;
+    }
+    renderCalendar();
+});
+
 
 // Logout
 var logoutButton = document.getElementById("logoutButton");

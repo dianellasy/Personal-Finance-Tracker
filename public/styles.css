@@ -113,6 +113,7 @@
     border-radius: 6px;
     background: #fafafa;
     cursor: pointer;
+    min-height: 60px;
 }
 
 .calendar-day:hover {
@@ -372,4 +373,68 @@ a:hover {
 .transaction-left {
     display: flex;
     flex-direction: column;
+}
+
+.calendar-weekdays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    text-align: center;
+    font-weight: 600;
+    margin-top: 20px;
+    margin-bottom: 8px;
+    color: #444;
+}
+
+#calendarSection {
+    background: white;
+    padding: 25px 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    margin-top: 40px;
+}
+
+
+#calendarHeader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+.calendar-day:hover {
+    background: #f0f0f0;
+    transition: 0.2s;
+}
+
+.has-transactions {
+    background: #d9f5d9;
+    border-color: #7ac27a;
+    font-weight: 600;
+}
+
+#calendarDayDetails {
+    border-top: 1px solid #eee;
+    padding-top: 15px;
+}
+
+.calendar-day.today {
+    border: 2px solid #2d4cc8;
+    background: #eef2ff;
+}
+
+.day-transaction {
+    margin-bottom: 12px;
+    line-height: 1.4;
+}
+
+.day-icon {
+    font-size: 1.1rem;
+    margin-right: 6px;
+}
+
+.day-total {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #2d4cc8;
+    margin-top: 10px;
 }
