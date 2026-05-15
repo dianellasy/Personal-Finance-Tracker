@@ -184,10 +184,19 @@ function handleAddTransaction() {
     var description = document.getElementById("description").value;
 
     var errorBox = document.getElementById("addError");
+    var successBox = document.getElementById("addSuccess");
+
+    // Clear old messages + remove styling
     errorBox.textContent = "";
+    errorBox.className = "";
+    if (successBox) {
+        successBox.textContent = "";
+        successBox.className = "";
+    }
 
     if (!amount || !category || !date) {
         errorBox.textContent = "Please fill out amount, category, and date";
+        errorBox.className = "error-message fade-in";
         return;
     }
 
@@ -202,8 +211,27 @@ function handleAddTransaction() {
         body: JSON.stringify({ amount, category, date, description })
     })
     .then(response => response.json())
-    .then(() => loadTransactions())
-    .catch(err => console.error("Add transaction error:", err));
+    .then(() => {
+        // SUCCESS
+        if (successBox) {
+            successBox.textContent = "Transaction added!";
+            successBox.className = "success-message fade-in";
+        }
+
+        // Reload list
+        loadTransactions();
+
+        // Clear inputs
+        document.getElementById("amount").value = "";
+        document.getElementById("category").value = "";
+        document.getElementById("date").value = "";
+        document.getElementById("description").value = "";
+    })
+    .catch(err => {
+        console.error("Add transaction error:", err);
+        errorBox.textContent = "Server error. Please try again";
+        errorBox.className = "error-message fade-in";
+    });
 }
 
 // Delete transaction

@@ -9,109 +9,124 @@
     </head>
 
     <body>
-        <!-- Dashboard header -->
-        <header class="dashboard-header">
-            <h1>Your Transactions</h1>
-            <button id="logoutButton">Logout</button>
+        <!-- Top banner -->
+        <header class="top-banner">
+            <h1>Personal Finance Tracker</h1>
         </header>
 
-        <!-- Main dashboard -->
-        <main class="dashboard-main">
-            <!-- Left panel: add new transaction -->
-            <section class="add-transaction-panel">
-                <h2>Add Transaction</h2>
+        <div class="content">
+            <div class="dashboard-container">
+                <!-- Dashboard header -->
+                <header class="dashboard-header">
+                    <h1>Your Transactions</h1>
+                    <button id="logoutButton">Logout</button>
+                </header>
 
-                <!-- Amount -->
-                <label for="amount">Amount</label>
-                <input
-                    type="number"
-                    id="amount"
-                    placeholder="Enter amount"
-                >
+                <!-- Main dashboard -->
+                <main class="dashboard-main">
+                    <!-- Left panel: add new transaction -->
+                    <section class="add-transaction-panel">
+                        <h2 class="section-title">Add Transaction</h2>
 
-                <!-- Category -->
-                <label for="category">Catgeory</label>
-                <select id="category">
-                    <option value="">Select category</option>
-                    <option value="Food">Food</option>
-                    <option value="Bills">Bills</option>
-                    <option value="Shopping">Shopping</option>
-                    <option value="Entertainment">Entertainment</option>
-                    <option value="Other">Other</option>
-                </select>
+                        <!-- Amount -->
+                        <label for="amount">Amount</label>
+                        <input
+                            type="number"
+                            id="amount"
+                            placeholder="Enter amount"
+                        >
 
-                <!-- Date -->
-                <label for="date">Date</label>
-                <input
-                    type="date"
-                    id="date"
-                >
+                        <!-- Category -->
+                        <label for="category">Catgeory</label>
+                        <select id="category">
+                            <option value="">Select category</option>
+                            <option value="Food">Food</option>
+                            <option value="Bills">Bills</option>
+                            <option value="Shopping">Shopping</option>
+                            <option value="Entertainment">Entertainment</option>
+                            <option value="Other">Other</option>
+                        </select>
 
-                <!-- Description -->
-                <label for="description">Description (optional)</label>
-                <input
-                    type="text"
-                    id="description"
-                    placeholder="Notes"
-                >
+                        <!-- Date -->
+                        <label for="date">Date</label>
+                        <input
+                            type="date"
+                            id="date"
+                        >
 
-                <!-- Add button -->
-                <button id="addTransactionButton">Add Transaction</button>
+                        <!-- Description -->
+                        <label for="description">Description (optional)</label>
+                        <input
+                            type="text"
+                            id="description"
+                            placeholder="Notes"
+                        >
 
-                <!-- Error message area -->
-                <p id="addError" class="error-message"></p>
-            </section>
+                        <!-- Add button -->
+                        <button id="addTransactionButton">Add Transaction</button>
 
-            <!-- Right panel: transaction list + sorting + filtering -->
-            <section class="transactions-panel">
-                <h2>Your History</h2>
+                        <!-- Error and success message area -->
+                        <p id="addError"></p>
+                        <p id="addSuccess"></p>
+                    </section>
 
-                <!-- Sorting -->
-                <label for="sortSelect">Sort By</label>
-                <select id="sortSelect">
-                    <option value="date-newest-first">Newest First</option>
-                    <option value="date-oldest-first">Oldest First</option>
-                    <option value="highest-amount">Highest Amount</option>
-                    <option value="lowest-amount">Lowest Amount</option>
-                </select>
+                    <!-- Right panel: transaction list + sorting + filtering -->
+                    <section class="transactions-panel">
+                        <h2 class="section-title">Your History</h2>
 
-                <!-- Filtering -->
-                <label for="filterSelect">Filter By Category</label>
-                <select id="filterSelect">
-                    <option value="all">All</option>
-                    <option value="Food">Food</option>
-                    <option value="Bills">Bills</option>
-                    <option value="Shopping">Shopping</option>
-                    <option value="Entertainment">Entertainment</option>
-                    <option value="Other">Other</option>
-                </select>
+                        <!-- Sorting -->
+                        <label for="sortSelect">Sort By</label>
+                        <select id="sortSelect">
+                            <option value="date-newest-first">Newest First</option>
+                            <option value="date-oldest-first">Oldest First</option>
+                            <option value="highest-amount">Highest Amount</option>
+                            <option value="lowest-amount">Lowest Amount</option>
+                        </select>
 
-                <!-- Transaction list container -->
-                <ul id="transactionList" class="transaction-list">
-                </ul>
-            </section>
+                        <!-- Filtering -->
+                        <label for="filterSelect">Filter By Category</label>
+                        <select id="filterSelect">
+                            <option value="all">All</option>
+                            <option value="Food">Food</option>
+                            <option value="Bills">Bills</option>
+                            <option value="Shopping">Shopping</option>
+                            <option value="Entertainment">Entertainment</option>
+                            <option value="Other">Other</option>
+                        </select>
 
-            <section id="calendarSection" style="display:none;">
-                <h2>Monthly Calendar</h2>
+                        <!-- Transaction list container -->
+                        <ul id="transactionList" class="transaction-list">
+                        </ul>
+                    </section>
 
-                <!-- Month header -->
-                <div id="calendarHeader">
-                    <button id="previousMonthButton">◀</button>
-                    <span id="calendarMonthLabel"></span>
-                    <button id="nextMonthButton">▶</button>
-                </div>
+                    <section id="calendarSection" style="display:none;">
+                        <h2>Monthly Calendar</h2>
 
-                <!-- Calendar grid -->
-                <div id="calendarGrid" class="calendar-grid"></div>
+                        <!-- Month header -->
+                        <div id="calendarHeader">
+                            <button id="previousMonthButton">◀</button>
+                            <span id="calendarMonthLabel"></span>
+                            <button id="nextMonthButton">▶</button>
+                        </div>
 
-                <!-- Day details -->
-                <div id="calendarDayDetails"></div>
-            </section>
+                        <!-- Calendar grid -->
+                        <div id="calendarGrid" class="calendar-grid"></div>
 
-            <!-- Button to switch views -->
-            <button id="calendarViewButton">Calendar View</button>
-            <button id="listViewButton" style="display:none;">List View</button>
-        </main>
+                        <!-- Day details -->
+                        <div id="calendarDayDetails"></div>
+                    </section>
+
+                    <!-- Button to switch views -->
+                    <button id="calendarViewButton">Calendar View</button>
+                    <button id="listViewButton" style="display:none;">List View</button>
+                </main>
+            </div>
+        </div>
+
+        <!-- Footer -->
+         <footer class="footer">
+            © 2026 Dianella Sy — All Rights Reserved
+         </footer>
         <script src="app.js"></script>
     </body>
 </html>

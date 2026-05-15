@@ -200,3 +200,101 @@ a:hover {
     from { opacity: 0; transform: translateY(-4px); }
     to { opacity: 1; transform: translateY(0); }
 }
+
+.dashboard-container {
+    width: 900px;
+    background: white;
+    padding: 30px 35px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    margin-bottom: 60px;
+}
+
+.dashboard-container h2 {
+    margin-top: 0;
+    font-size: 1.4rem;
+    color: #111;
+}
+
+.section-title {
+    margin-top: 30px;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.dashboard-container input,
+.dashboard-container select,
+.dashboard-container textarea {
+    width: 100%;
+    padding: 12px;
+    margin: 6px 0 14px 0;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+#addTransactionButton {
+    width: 100%;
+    padding: 12px;
+    background: #333;
+    color: white;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+#addTransactionButton:hover {
+    background: #555;
+}
+
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.dashboard-header h1 {
+    margin: 0;
+    font-size: 1.6rem;
+    color: #111;
+}
+
+.dashboard-main {
+    display: flex;
+    gap: 40px;
+}
+
+.add-transaction-panel,
+.transactions-panel {
+    flex: 1;
+}
+
+.transaction-list li {
+    background: #fafafa;
+    padding: 12px 14px;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.transaction-list li span {
+    font-weight: 500;
+}
+
+.transaction-list li button {
+    background: #d9534f;
+    color: white;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.transaction-list li button:hover {
+    background: #c9302c;
+}
