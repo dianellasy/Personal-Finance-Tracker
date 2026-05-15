@@ -61,11 +61,16 @@ function handleSignup() {
     var username = usernameInput.value.trim();
     var password = passwordInput.value.trim();
 
+    // Clear old messages + remove styling
     signupErrorBox.textContent = "";
+    signupErrorBox.className = "";
     signupSuccessBox.textContent = "";
+    signupSuccessBox.className = "";
 
+    // Frontend validation
     if (username === "" || password === "") {
         signupErrorBox.textContent = "Please enter both username and password";
+        signupErrorBox.className = "error-message fade-in";
         return;
     }
 
@@ -80,10 +85,12 @@ function handleSignup() {
     .then(result => {
         if (!result.ok) {
             signupErrorBox.textContent = result.data.message || "Signup failed";
+            signupErrorBox.className = "error-message fade-in";
             return;
         }
 
         signupSuccessBox.textContent = "Account created successfully! Redirecting...";
+        signupSuccessBox.className = "success-message fade-in";
 
         setTimeout(() => {
             window.location.href = "index.html";
@@ -92,6 +99,7 @@ function handleSignup() {
     .catch(err => {
         console.error("Signup error:", err);
         signupErrorBox.textContent = "Server error. Please try again";
+        signupErrorBox.className = "error-message fade-in";
     });
 }
 

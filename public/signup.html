@@ -10,39 +10,51 @@
     </head>
 
     <body>
-        <!-- Signup container: holds the signup form centered on the page -->
-        <div class="signup-container">
-            <h1>Create Account</h1>
+        <!-- Top banner -->
+        <header class="top-banner">
+            <h1>Personal Finance Tracker</h1>
+        </header>
 
-            <!-- Username input -->
-            <label for="signupUsername">Username</label>
-            <input
-                type="text"
-                id="signupUsername"
-                placeholder="Choose a username"
-            >
+        <div class="content">
+            <!-- Signup container: holds the signup form centered on the page -->
+            <div class="signup-container">
+                <h1>Create Account</h1>
 
-            <!-- Password input -->
-            <label for="signupPassword">Password</label>
-            <input
-                type="password"
-                id="signupPassword"
-                placeholder="Choose a password"
-            >
+                <!-- Username input -->
+                <label for="signupUsername">Username</label>
+                <input
+                    type="text"
+                    id="signupUsername"
+                    placeholder="Choose a username"
+                >
 
-            <!-- Signup button -->
-            <button id="signupButton">Sign Up</button>
+                <!-- Password input -->
+                <label for="signupPassword">Password</label>
+                <input
+                    type="password"
+                    id="signupPassword"
+                    placeholder="Choose a password"
+                >
 
-            <!-- Link back to login -->
-            <p>
-                Already have an account?
-                <a href="index.html">Login here</a>
-            </p>
+                <!-- Signup button -->
+                <button id="signupButton">Sign Up</button>
 
-            <!-- Error message area -->
-            <p id="signupError" class="error-message"></p>
-            <p id="signupSuccess" class="success-message"></p>
+                <!-- Link back to login -->
+                <p>
+                    Already have an account?
+                    <a href="index.html">Login here</a>
+                </p>
+
+                <!-- Error message area -->
+                <p id="signupError"></p>
+                <p id="signupSuccess"></p>
+            </div>
         </div>
+        
+        <!-- Footer -->
+         <footer class="footer">
+            © 2026 Dianella Sy — All Rights Reserved
+         </footer>
 
         <script src="app.js"></script>
     </body>

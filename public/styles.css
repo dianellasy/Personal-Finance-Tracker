@@ -44,23 +44,59 @@
 
 /* Error message */
 .error-message {
-    color: red;
-    margin-top: 10px;
+    background: #fdeaea;
+    color: #b33a3a;
+    padding: 10px 12px;
+    border-radius: 6px;
+    border: 1px solid #f5c2c2;
+    margin-top: 15px;
+    font-size: 0.95rem;
 }
 
+
 .signup-container {
-    width: 300px;
-    margin: 120px auto;
+    width: 360px;
+    margin: 60px auto 120px auto;
     padding: 30px 35px;
     background: white;
     border-radius: 8px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-    color: #0066cc;
+    color: #111;
+}
+
+.signup-container input {
+    width: 100%;
+    padding: 14px;
+    margin: 6px 0 14px 0;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+#signupButton {
+    width: 100%;
+    padding: 12px;
+    background: #333;
+    color: white;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    margin-bottom: 10px;
+}
+
+#signupButton:hover {
+    background: #555;
 }
 
 .success-message {
-    color: green;
-    margin-top: 10px;
+    background: #e8f8e8;
+    color: #2d7a2d;
+    padding: 10px 12px;
+    border-radius: 6px;
+    border: 1px solid #b6e2b6;
+    margin-top: 15px;
+    font-size: 0.95rem;
 }
 
 .calendar-grid {
@@ -154,4 +190,13 @@ a {
 
 a:hover {
     text-decoration: underline;
+}
+
+.fade-in {
+    animation: fadeIn 0.35s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-4px); }
+    to { opacity: 1; transform: translateY(0); }
 }
