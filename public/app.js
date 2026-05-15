@@ -155,7 +155,7 @@ function loadTransactions() {
     .then(response => response.json())
     .then(list => {
         transactionDataList = list;
-        renderTransactionList(transactionDataList);
+        applySortAndFilter();
     })
     .catch(err => console.error("Error loading transactions:", err));
 }
@@ -300,49 +300,43 @@ function handleDeleteTransaction(event) {
     .catch(err => console.error("Delete error:", err));
 }
 
+function applySortAndFilter() {
+    let sorted = [...transactionDataList];
+
+    // Sort
+    const sortValue = document.getElementById("sortSelect").value;
+
+    if (sortValue === "date-newest-first") {
+        sorted.sort((a, b) => new Date(b.date) - new Date(a.date));
+    } else if (sortValue === "date-oldest-first") {
+        sorted.sort((a, b) => new Date(a.date) - new Date(b.date));
+    } else if (sortValue === "highest-amount") {
+        sorted.sort((a, b) => b.amount - a.amount);
+    } else if (sortValue === "lowest-amount") {
+        sorted.sort((a, b) => a.amount - b.amount);
+    }
+
+    // Filter
+    const filterValue = document.getElementById("filterSelect").value;
+    if (filterValue !== "all") {
+        sorted = sorted.filter(t => t.category === filterValue);
+    }
+
+    renderTransactionList(sorted);
+}
+
 // Sorting
 var sortDropdown = document.getElementById("sortSelect");
 
 if (sortDropdown) {
-    sortDropdown.addEventListener("change", handleSortTransactions);
-}
-
-function handleSortTransactions() {
-    var option = sortDropdown.value;
-
-    if (option === "date-newest-first") {
-        transactionDataList.sort((a, b) => new Date(b.date) - new Date(a.date));
-    }
-    if (option === "date-oldest-first") {
-        transactionDataList.sort((a, b) => new Date(a.date) - new Date(b.date));
-    }
-    if (option === "highest-amount") {
-        transactionDataList.sort((a, b) => b.amount - a.amount);
-    }
-    if (option === "lowest-amount") {
-        transactionDataList.sort((a, b) => a.amount - b.amount);
-    }
-
-    renderTransactionList(transactionDataList);
+    sortDropdown.addEventListener("change", applySortAndFilter);
 }
 
 // Filtering
 var filterDropdown = document.getElementById("filterSelect");
 
 if (filterDropdown) {
-    filterDropdown.addEventListener("change", handleFilterTransactions);
-}
-
-function handleFilterTransactions() {
-    var category = filterDropdown.value;
-
-    if (category === "all") {
-        renderTransactionList(transactionDataList);
-        return;
-    }
-
-    var filtered = transactionDataList.filter(t => t.category === category);
-    renderTransactionList(filtered);
+    filterDropdown.addEventListener("change", applySortAndFilter);
 }
 
 // Logout
