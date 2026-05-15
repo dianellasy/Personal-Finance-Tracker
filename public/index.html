@@ -10,38 +10,50 @@
     </head>
 
     <body>
-        <!-- Login container: holds the login form centered on the page -->
-         <div class="login-container">
-            <h1>Login</h1>
+        <!-- Top banner -->
+        <header class="top-banner">
+            <h1>Personal Finance Tracker</h1>
+        </header>
 
-            <!-- Username input -->
-            <label for="username">Username</label>
-            <input
-                type="text"
-                id="username"
-                placeholder="Enter username"
-            >
+        <div class="content">
+            <!-- Login container: holds the login form centered on the page -->
+            <div class="login-container">
+                <h1>Login</h1>
 
-            <!-- Password input -->
-            <label for="password">Password</label>
-            <input
-                type="password"
-                id="password"
-                placeholder="Enter password"
-            >
+                <!-- Username input -->
+                <label for="username">Username</label>
+                <input
+                    type="text"
+                    id="username"
+                    placeholder="Enter username"
+                >
 
-            <!-- Login button -->
-            <button id="loginButton">Login</button>
+                <!-- Password input -->
+                <label for="password">Password</label>
+                <input
+                    type="password"
+                    id="password"
+                    placeholder="Enter password"
+                >
 
-            <!-- Link to signup page -->
-            <p>
-                Don't have an account?
-                <a href="signup.html">Sign up here</a>
-            </p>
+                <!-- Login button -->
+                <button id="loginButton">Login</button>
 
-            <!-- Error message area -->
-            <p id="loginError" class="error-message"></p>
-         </div>
+                <!-- Link to signup page -->
+                <p>
+                    Don't have an account?
+                    <a href="signup.html">Sign up here</a>
+                </p>
+
+                <!-- Error message area -->
+                <p id="loginError" class="error-message"></p>
+            </div>
+        </div>
+        
+         <!-- Footer -->
+         <footer class="footer">
+            © 2026 Dianella Sy — All Rights Reserved
+         </footer>
 
          <script src="app.js"></script>
     </body>
