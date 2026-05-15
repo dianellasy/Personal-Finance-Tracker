@@ -5,6 +5,15 @@ if (loginButton) {
     loginButton.addEventListener("click", handleLogin);
 }
 
+function formatDateMMDDYYYY(dateString) {
+    const d = new Date(dateString);
+    const month = String(d.getMonth() + 1).padStart(2, "0");
+    const day = String(d.getDate()).padStart(2, "0");
+    const year = d.getFullYear();
+    return `${month}-${day}-${year}`;
+}
+
+
 function handleLogin() {
     var usernameInput = document.getElementById("username");
     var passwordInput = document.getElementById("password");
@@ -158,7 +167,34 @@ function renderTransactionList(list) {
 
     list.forEach(t => {
         var li = document.createElement("li");
-        li.textContent = `${t.category} - $${t.amount} (${t.date.substring(0, 10)})`;
+
+        var icon = {
+            Food: "🍔",
+            Bills: "💡",
+            Shopping: "🛍️",
+            Entertainment: "🎮",
+            Other: "📝"
+        }[t.category];
+
+        var badgeClass = {
+            Food: "badge-food",
+            Bills: "badge-bills",
+            Shopping: "badge-shopping",
+            Entertainment: "badge-entertainment",
+            Other: "badge-other"
+        }[t.category];
+
+        li.innerHTML = `
+            <div class="transaction-left">
+                <div class="transaction-main">
+                    <span class="badge ${badgeClass}">${t.category}</span>
+                    ${icon} $${t.amount} (${formatDateMMDDYYYY(t.date)})
+                </div>
+
+                ${t.description ? `<div class="transaction-desc">${t.description}</div>` : ""}
+            </div>
+        `;
+
 
         var del = document.createElement("button");
         del.textContent = "Delete";
@@ -168,6 +204,23 @@ function renderTransactionList(list) {
         li.appendChild(del);
         ul.appendChild(li);
     });
+
+    updateMonthlyTotal(list);
+}
+
+function updateMonthlyTotal(list) {
+    var now = new Date();
+    var month = now.getMonth();
+    var year = now.getFullYear();
+
+    var total = list
+        .filter(t => {
+            var d = new Date(t.date);
+            return d.getMonth() === month && d.getFullYear() === year;
+        })
+        .reduce((sum, t) => sum + Number(t.amount), 0);
+
+    document.getElementById("monthlyTotal").textContent = "$" + total.toLocaleString();
 }
 
 // Add transaction
