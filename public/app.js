@@ -471,8 +471,24 @@ function renderCalendar() {
 
         cell.textContent = day;
 
+        // Reapply selected-day highlight after rerender
+        if (window.currentSelectedDate === dateString) {
+            cell.classList.add("selected-day");
+        }
+
+
         cell.addEventListener("click", () => {
-            window.currentSelectedDate = dateString;   
+            // Remove highlight from previously selected day
+            const prev = document.querySelector(".selected-day");
+            if (prev) prev.classList.remove("selected-day");
+
+            // Add highlight to this day
+            cell.classList.add("selected-day");
+
+            // Track selected date
+            window.currentSelectedDate = dateString;
+
+            // Show details
             showDayDetails(dateString, todaysTransactions);
         });
 

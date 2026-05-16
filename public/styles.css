@@ -441,16 +441,17 @@ a:hover {
 }
 
 .edit-btn {
-    background: #2196f3;
+    background: #2196f3 !important;
     color: white;
     border: none;
     padding: 6px 10px;
     border-radius: 4px;
     cursor: pointer;
+    margin-right: -55px !important;
 }
 
 .edit-btn:hover {
-    background: #1976d2;
+    background: #1976d2 !important;
 }
 
 .cancel-edit-btn {
@@ -465,4 +466,17 @@ a:hover {
 
 .cancel-edit-btn:hover {
     background: #999;
+}
+
+/* Blue highlight for selected day */
+.selected-day {
+    background: #dce7ff !important;
+    border: 2px solid #2d4cc8 !important;
+}
+
+/* Today should be bold, not blue or green */
+.today {
+    font-weight: 700;
+    border: none !important;
+    background: #eef2ff !important;
 }
