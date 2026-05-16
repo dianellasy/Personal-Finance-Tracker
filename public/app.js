@@ -159,7 +159,7 @@ function loadTransactions() {
         applySortAndFilter();
         renderCalendar();
 
-        // ⭐ NEW: refresh the selected day details AFTER data reloads
+        // Refresh the selected day details after data reloads
         if (window.currentSelectedDate) {
             const updatedList = transactionDataList.filter(t =>
                 t.date.startsWith(window.currentSelectedDate)
@@ -196,7 +196,7 @@ function renderTransactionList(list) {
             Other: "badge-other"
         }[t.category];
 
-        // LEFT SIDE (category, amount, date, description)
+        // Left side (category, amount, date, description)
         const left = document.createElement("div");
         left.classList.add("transaction-left");
         left.innerHTML = `
@@ -207,7 +207,7 @@ function renderTransactionList(list) {
             ${t.description ? `<div class="transaction-desc">${t.description}</div>` : ""}
         `;
 
-        // BUTTON CONTAINER (Edit + Delete)
+        // Button container (edit + delete)
         const btnContainer = document.createElement("div");
         btnContainer.classList.add("transaction-buttons");
 

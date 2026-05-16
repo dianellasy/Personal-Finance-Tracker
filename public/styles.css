@@ -114,10 +114,7 @@
     background: #fafafa;
     cursor: pointer;
     min-height: 60px;
-}
-
-.calendar-day:hover {
-    background: #e8e8e8;
+    font-weight: normal !important;
 }
 
 .calendar-day.has-transactions {
@@ -290,7 +287,7 @@ a:hover {
 
 /* Delete button */
 .transaction-list li button {
-    background: #d9534f;
+    background: #c0392b;
     color: white;
     border: none;
     padding: 6px 10px;
@@ -300,7 +297,7 @@ a:hover {
 }
 
 .transaction-list li button:hover {
-    background: #c9302c;
+    background: #a93226;
 }
 
 /* Summary Card */
@@ -332,9 +329,9 @@ a:hover {
     margin-right: 10px;
 }
 
-.badge-food { background: #4caf50; }
-.badge-bills { background: #ff9800; }
-.badge-shopping { background: #2196f3; }
+.badge-food { background: #2e7d32; }
+.badge-bills { background: #bf360c; }
+.badge-shopping { background: #1976d2; }
 .badge-entertainment { background: #9c27b0; }
 .badge-other { background: #757575; }
 
@@ -421,6 +418,7 @@ a:hover {
 .calendar-day.today {
     border: 2px solid #2d4cc8;
     background: #eef2ff;
+    font-weight: 700 !important;
 }
 
 .day-transaction {
@@ -441,7 +439,7 @@ a:hover {
 }
 
 .edit-btn {
-    background: #2196f3 !important;
+    background: #1976d2 !important;
     color: white;
     border: none;
     padding: 6px 10px;
@@ -450,7 +448,7 @@ a:hover {
 }
 
 .edit-btn:hover {
-    background: #1976d2 !important;
+    background: #155aab !important;
 }
 
 .cancel-edit-btn {
@@ -471,6 +469,7 @@ a:hover {
 .selected-day {
     background: #dce7ff !important;
     border: 2px solid #2d4cc8 !important;
+    font-weight: normal !important;
 }
 
 /* Today should be bold, not blue or green */
@@ -495,7 +494,7 @@ a:hover {
 
 /* Save button — same as Edit */
 .save-edit-btn {
-    background: #2196f3 !important;
+    background: #1976d2 !important;
     color: white;
     border: none;
     padding: 6px 10px;
@@ -505,12 +504,12 @@ a:hover {
 }
 
 .save-edit-btn:hover {
-    background: #1976d2 !important;
+    background: #155aab !important;
 }
 
 /* Cancel button — same as Delete */
 .cancel-edit-btn {
-    background: #d9534f !important;
+    background: #c0392b !important;
     color: white;
     border: none;
     padding: 6px 10px;
@@ -520,7 +519,7 @@ a:hover {
 }
 
 .cancel-edit-btn:hover {
-    background: #c9302c !important;
+    background: #a93226 !important;
 }
 
 .required {
