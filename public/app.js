@@ -345,6 +345,13 @@ function handleAddTransaction() {
         successBox.className = "";
     }
 
+    // Prevent negative amounts
+    if (Number(amount) < 0) {
+        errorBox.textContent = "Amount cannot be negative";
+        errorBox.className = "error-message fade-in";
+        return;
+    }
+
     if (!amount || !category || !date) {
         errorBox.textContent = "Please fill out amount, category, and date";
         errorBox.className = "error-message fade-in";

@@ -34,10 +34,14 @@
                 <section class="add-transaction-panel">
                     <h2 class="section-title">Add Transaction</h2>
 
-                    <label for="amount">Amount</label>
+                    <label for="amount">
+                        Amount <span class="required" title="Required field">*</span>
+                    </label>
                     <input type="number" id="amount" placeholder="Enter amount">
 
-                    <label for="category">Category</label>
+                    <label for="category">
+                        Category <span class="required" title="Required field">*</span>
+                    </label>
                     <select id="category">
                         <option value="">Select category</option>
                         <option value="Food">Food</option>
@@ -47,7 +51,9 @@
                         <option value="Other">Other</option>
                     </select>
 
-                    <label for="date">Date</label>
+                    <label for="date">
+                        Date <span class="required" title="Required field">*</span>
+                    </label>
                     <input type="date" id="date">
 
                     <label for="description">Description (optional)</label>
