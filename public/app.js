@@ -6,13 +6,14 @@ if (loginButton) {
 }
 
 function formatDateMMDDYYYY(dateString) {
-    const d = new Date(dateString);
-    const month = String(d.getMonth() + 1).padStart(2, "0");
-    const day = String(d.getDate()).padStart(2, "0");
-    const year = d.getFullYear();
+    // If it's ISO (contains "T"), strip the time part
+    if (dateString.includes("T")) {
+        dateString = dateString.split("T")[0];
+    }
+
+    const [year, month, day] = dateString.split("-");
     return `${month}-${day}-${year}`;
 }
-
 
 function handleLogin() {
     var usernameInput = document.getElementById("username");
@@ -157,9 +158,18 @@ function loadTransactions() {
         transactionDataList = list;
         applySortAndFilter();
         renderCalendar();
+
+        // ⭐ NEW: refresh the selected day details AFTER data reloads
+        if (window.currentSelectedDate) {
+            const updatedList = transactionDataList.filter(t =>
+                t.date.startsWith(window.currentSelectedDate)
+            );
+            showDayDetails(window.currentSelectedDate, updatedList);
+        }
     })
     .catch(err => console.error("Error loading transactions:", err));
 }
+
 
 // Render
 function renderTransactionList(list) {
@@ -196,18 +206,93 @@ function renderTransactionList(list) {
             </div>
         `;
 
+        // Edit button
+        var edit = document.createElement("button");
+        edit.textContent = "Edit";
+        edit.classList.add("edit-btn");
+        edit.onclick = () => openEditForm(t);
+        li.appendChild(edit);
 
+        // Delete Button
         var del = document.createElement("button");
         del.textContent = "Delete";
         del.setAttribute("data-id", t._id);
         del.onclick = handleDeleteTransaction;
-
         li.appendChild(del);
+
         ul.appendChild(li);
     });
 
     updateMonthlyTotal(list);
 }
+
+function openEditForm(transaction) {
+    const section = document.getElementById("editTransactionSection");
+    const box = document.getElementById("editTransactionBox");
+
+    section.style.display = "block";
+
+    box.innerHTML = `
+        <label>Amount</label>
+        <input id="editAmount" value="${transaction.amount}">
+
+        <label>Category</label>
+        <select id="editCategory">
+            <option ${transaction.category === "Food" ? "selected" : ""}>Food</option>
+            <option ${transaction.category === "Bills" ? "selected" : ""}>Bills</option>
+            <option ${transaction.category === "Shopping" ? "selected" : ""}>Shopping</option>
+            <option ${transaction.category === "Entertainment" ? "selected" : ""}>Entertainment</option>
+            <option ${transaction.category === "Other" ? "selected" : ""}>Other</option>
+
+        </select>
+
+        <label>Date</label>
+        <input id="editDate" type="date" value="${transaction.date.substring(0,10)}">
+
+        <label>Description</label>
+        <input id="editDescription" value="${transaction.description || ""}">
+
+        <button onclick="saveEdit('${transaction._id}')">Save Changes</button>
+        <button class="cancel-edit-btn" onclick="cancelEdit()">Cancel</button>
+    `;
+}
+
+function saveEdit(id) {
+    const amount = document.getElementById("editAmount").value;
+    const category = document.getElementById("editCategory").value;
+    const date = document.getElementById("editDate").value;
+    const description = document.getElementById("editDescription").value;
+
+    const storedToken = localStorage.getItem("token");
+
+    fetch(`http://localhost:3000/transactions/${id}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + storedToken
+        },
+        body: JSON.stringify({ amount, category, date, description })
+    })
+    .then(res => res.json())
+    .then(() => {
+        loadTransactions(); 
+        document.getElementById("editTransactionSection").style.display = "none";
+
+        // Fefresh the selected day
+        if (window.currentSelectedDate) {
+            const updatedList = transactionDataList.filter(t =>
+                t.date.startsWith(window.currentSelectedDate)
+            );
+            showDayDetails(window.currentSelectedDate, updatedList);
+        }
+    })
+    .catch(err => console.error("Update error:", err));
+}
+
+function cancelEdit() {
+    document.getElementById("editTransactionSection").style.display = "none";
+}
+
 
 function updateMonthlyTotal(list) {
     var now = new Date();
@@ -386,7 +471,11 @@ function renderCalendar() {
 
         cell.textContent = day;
 
-        cell.addEventListener("click", () => showDayDetails(dateString, todaysTransactions));
+        cell.addEventListener("click", () => {
+            window.currentSelectedDate = dateString;   
+            showDayDetails(dateString, todaysTransactions);
+        });
+
 
         grid.appendChild(cell);
     }

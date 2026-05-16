@@ -296,6 +296,7 @@ a:hover {
     padding: 6px 10px;
     border-radius: 4px;
     cursor: pointer;
+    margin-left: 6px;
 }
 
 .transaction-list li button:hover {
@@ -437,4 +438,31 @@ a:hover {
     font-weight: 700;
     color: #2d4cc8;
     margin-top: 10px;
+}
+
+.edit-btn {
+    background: #2196f3;
+    color: white;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.edit-btn:hover {
+    background: #1976d2;
+}
+
+.cancel-edit-btn {
+    background: #bbb;
+    color: white;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 8px;
+}
+
+.cancel-edit-btn:hover {
+    background: #999;
 }

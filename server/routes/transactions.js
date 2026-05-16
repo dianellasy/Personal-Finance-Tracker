@@ -61,3 +61,25 @@ router.delete("/:id", async (req, res) => {
 });
 
 module.exports = router;
+
+// Update
+router.put("/:id", async (req, res) => {
+    try {
+        const { amount, category, date, description } = req.body;
+
+        const updated = await Transaction.findOneAndUpdate(
+            { _id: req.params.id, userId: req.user.userId },
+            { amount, category, date, description },
+            { new: true }
+        );
+
+        if (!updated) {
+            return res.status(404).json({ message: "Transaction not found" });
+        }
+
+        res.status(200).json(updated);
+    } catch (error) {
+        console.error("Error updating transaction:", error);
+        res.status(500).json({ message: "Server error updating transaction" });
+    }
+});
