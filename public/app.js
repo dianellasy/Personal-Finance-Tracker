@@ -367,6 +367,12 @@ function handleAddTransaction() {
         if (successBox) {
             successBox.textContent = "Transaction added!";
             successBox.className = "success-message fade-in";
+
+            // Auto-hide after 5 seconds
+            setTimeout(() => {
+                successBox.textContent = "";
+                successBox.className = "";
+            }, 5000);
         }
 
         // Reload list
