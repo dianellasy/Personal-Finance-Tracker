@@ -178,6 +178,7 @@ function renderTransactionList(list) {
 
     list.forEach(t => {
         var li = document.createElement("li");
+        li.classList.add("transaction-item");
 
         var icon = {
             Food: "🍔",
@@ -195,36 +196,46 @@ function renderTransactionList(list) {
             Other: "badge-other"
         }[t.category];
 
-        li.innerHTML = `
-            <div class="transaction-left">
-                <div class="transaction-main">
-                    <span class="badge ${badgeClass}">${t.category}</span>
-                    ${icon} $${t.amount} (${formatDateMMDDYYYY(t.date)})
-                </div>
-
-                ${t.description ? `<div class="transaction-desc">${t.description}</div>` : ""}
+        // LEFT SIDE (category, amount, date, description)
+        const left = document.createElement("div");
+        left.classList.add("transaction-left");
+        left.innerHTML = `
+            <div class="transaction-main">
+                <span class="badge ${badgeClass}">${t.category}</span>
+                ${icon} $${t.amount} (${formatDateMMDDYYYY(t.date)})
             </div>
+            ${t.description ? `<div class="transaction-desc">${t.description}</div>` : ""}
         `;
+
+        // BUTTON CONTAINER (Edit + Delete)
+        const btnContainer = document.createElement("div");
+        btnContainer.classList.add("transaction-buttons");
 
         // Edit button
         var edit = document.createElement("button");
         edit.textContent = "Edit";
         edit.classList.add("edit-btn");
         edit.onclick = () => openEditForm(t);
-        li.appendChild(edit);
+        btnContainer.appendChild(edit);
 
-        // Delete Button
+        // Delete button
         var del = document.createElement("button");
         del.textContent = "Delete";
+        del.classList.add("delete-btn");
         del.setAttribute("data-id", t._id);
         del.onclick = handleDeleteTransaction;
-        li.appendChild(del);
+        btnContainer.appendChild(del);
+
+        // Append both sides
+        li.appendChild(left);
+        li.appendChild(btnContainer);
 
         ul.appendChild(li);
     });
 
     updateMonthlyTotal(list);
 }
+
 
 function openEditForm(transaction) {
     const section = document.getElementById("editTransactionSection");
@@ -376,6 +387,13 @@ function handleAddTransaction() {
 // Delete transaction
 function handleDeleteTransaction(event) {
     var id = event.target.getAttribute("data-id");
+
+    const confirmDelete = confirm(
+        "Are you sure you want to delete this transaction?\nThis action cannot be undone."
+    );
+
+    if (!confirmDelete) return;
+
     var storedToken = localStorage.getItem("token");
 
     fetch(`http://localhost:3000/transactions/${id}`, {
@@ -385,6 +403,7 @@ function handleDeleteTransaction(event) {
     .then(() => loadTransactions())
     .catch(err => console.error("Delete error:", err));
 }
+
 
 function applySortAndFilter() {
     let sorted = [...transactionDataList];
