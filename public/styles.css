@@ -486,3 +486,39 @@ a:hover {
     margin-left: auto; 
     align-items: center;
 }
+
+.edit-buttons {
+    display: flex;
+    gap: 6px;
+    margin-top: 15px;
+}
+
+/* Save button — same as Edit */
+.save-edit-btn {
+    background: #2196f3 !important;
+    color: white;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.save-edit-btn:hover {
+    background: #1976d2 !important;
+}
+
+/* Cancel button — same as Delete */
+.cancel-edit-btn {
+    background: #d9534f !important;
+    color: white;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.cancel-edit-btn:hover {
+    background: #c9302c !important;
+}

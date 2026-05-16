@@ -244,27 +244,28 @@ function openEditForm(transaction) {
     section.style.display = "block";
 
     box.innerHTML = `
-        <label>Amount</label>
-        <input id="editAmount" value="${transaction.amount}">
+    <label>Amount</label>
+    <input id="editAmount" value="${transaction.amount}">
 
-        <label>Category</label>
-        <select id="editCategory">
-            <option ${transaction.category === "Food" ? "selected" : ""}>Food</option>
-            <option ${transaction.category === "Bills" ? "selected" : ""}>Bills</option>
-            <option ${transaction.category === "Shopping" ? "selected" : ""}>Shopping</option>
-            <option ${transaction.category === "Entertainment" ? "selected" : ""}>Entertainment</option>
-            <option ${transaction.category === "Other" ? "selected" : ""}>Other</option>
+    <label>Category</label>
+    <select id="editCategory">
+        <option ${transaction.category === "Food" ? "selected" : ""}>Food</option>
+        <option ${transaction.category === "Bills" ? "selected" : ""}>Bills</option>
+        <option ${transaction.category === "Shopping" ? "selected" : ""}>Shopping</option>
+        <option ${transaction.category === "Entertainment" ? "selected" : ""}>Entertainment</option>
+        <option ${transaction.category === "Other" ? "selected" : ""}>Other</option>
+    </select>
 
-        </select>
+    <label>Date</label>
+    <input id="editDate" type="date" value="${transaction.date.substring(0,10)}">
 
-        <label>Date</label>
-        <input id="editDate" type="date" value="${transaction.date.substring(0,10)}">
+    <label>Description</label>
+    <input id="editDescription" value="${transaction.description || ""}">
 
-        <label>Description</label>
-        <input id="editDescription" value="${transaction.description || ""}">
-
-        <button onclick="saveEdit('${transaction._id}')">Save Changes</button>
+    <div class="edit-buttons">
+        <button class="save-edit-btn" onclick="saveEdit('${transaction._id}')">Save Changes</button>
         <button class="cancel-edit-btn" onclick="cancelEdit()">Cancel</button>
+    </div>
     `;
 }
 
